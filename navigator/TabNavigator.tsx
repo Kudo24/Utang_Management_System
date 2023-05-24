@@ -1,5 +1,5 @@
 import { View, Text, Button, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
 import { FontAwesome } from "@expo/vector-icons";
 
@@ -17,6 +17,12 @@ const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
   const navigation: any = useNavigation();
+  const [data, setData] = useState("");
+  const handleButtonPress = () => {
+    // Navigate to the "Add" screen and pass the data as a parameter
+    navigation.navigate("Add", { data });
+  };
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -43,7 +49,7 @@ const TabNavigator = () => {
           paddingRight: 16,
         },
         headerRight: () => (
-          <TouchableOpacity onPress={() => navigation.navigate("Add")}>
+          <TouchableOpacity onPress={handleButtonPress}>
             <FontAwesome name="pencil-square-o" size={30} color="black" />
           </TouchableOpacity>
         ),

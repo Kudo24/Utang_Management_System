@@ -4,8 +4,8 @@ import React from "react";
 // Tab Navigator
 import TabNavigator from "./TabNavigator";
 import Home from "../screens/Home";
-import Add from "./Add";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Add from "../screens/Add";
 
 const RootStack = createNativeStackNavigator();
 const RootNavigator = () => {
@@ -17,7 +17,18 @@ const RootNavigator = () => {
       <RootStack.Screen name="Main" component={TabNavigator} />
       <RootStack.Screen name="Home" component={Home} />
 
-      <RootStack.Group screenOptions={{ presentation: "modal" }}>
+      <RootStack.Group
+        screenOptions={{
+          presentation: "modal",
+          headerShown: true,
+          headerTitle: "Add something",
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            fontSize: 20,
+            color: "black",
+          },
+        }}
+      >
         <RootStack.Screen name="Add" component={Add} />
       </RootStack.Group>
     </RootStack.Navigator>
