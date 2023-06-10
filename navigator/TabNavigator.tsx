@@ -13,15 +13,17 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
 
+//types
+import { AddProps } from "../screens/types";
+
+export type TabStackParamList = {
+  Mine: AddProps;
+};
+
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
   const navigation: any = useNavigation();
-  const [data, setData] = useState("");
-  const handleButtonPress = () => {
-    // Navigate to the "Add" screen and pass the data as a parameter
-    navigation.navigate("Add", { data });
-  };
 
   return (
     <Tab.Navigator
@@ -45,14 +47,6 @@ const TabNavigator = () => {
             );
           }
         },
-        headerRightContainerStyle: {
-          paddingRight: 16,
-        },
-        headerRight: () => (
-          <TouchableOpacity onPress={handleButtonPress}>
-            <FontAwesome name="pencil-square-o" size={30} color="black" />
-          </TouchableOpacity>
-        ),
       })}
     >
       <Tab.Screen name="Mine" component={Mine} />

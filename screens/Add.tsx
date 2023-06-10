@@ -11,11 +11,20 @@ import React, { useState } from "react";
 const Add = () => {
   return (
     <View style={styles.container}>
+      <Text></Text>
       <View>
         <View style={styles.dateContainer}>
           <TextInput placeholder="Month:" style={styles.date} />
-          <TextInput placeholder="Day:" style={styles.date} />
-          <TextInput placeholder="Year:" style={styles.date} />
+          <TextInput
+            placeholder="Day:"
+            style={styles.date}
+            keyboardType="numeric"
+          />
+          <TextInput
+            placeholder="Year:"
+            style={styles.date}
+            keyboardType="numeric"
+          />
         </View>
         <TextInput placeholder="Name:" style={styles.Input} />
         <TextInput placeholder="Amount:" style={styles.Input} />
