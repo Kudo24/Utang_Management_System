@@ -5,9 +5,10 @@ import { FontAwesome } from "@expo/vector-icons";
 import { AddProps } from "./types";
 import { useNavigation } from "@react-navigation/native";
 import { TabStackParamList } from "../navigator/TabNavigator";
-// react navigation
 
-// export type Props = StackScreenProps<TabStackParamList, "Mine">;
+// react navigation
+import { StackScreenProps } from "@react-navigation/stack";
+export type Props = StackScreenProps<TabStackParamList, "Mine">;
 const Mine: FC<AddProps> = (route: AddProps) => {
   const navigation: any = useNavigation();
   return (
@@ -18,7 +19,7 @@ const Mine: FC<AddProps> = (route: AddProps) => {
       <View style={styles.addList}>
         <TouchableOpacity
           style={styles.pencil}
-          onPress={() => navigation.navigate("Add")}
+          onPress={() => navigation.navigate("Add", { title: "Mine" })}
         >
           <FontAwesome name="pencil-square-o" size={24} color="black" />
         </TouchableOpacity>

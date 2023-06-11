@@ -13,7 +13,7 @@ const Others = () => {
       <View style={styles.addList}>
         <TouchableOpacity
           style={styles.pencil}
-          onPress={() => navigation.navigate("Add")}
+          onPress={() => navigation.navigate("Add", { title: "Others" })}
         >
           <FontAwesome name="pencil-square-o" size={24} color="black" />
         </TouchableOpacity>

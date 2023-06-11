@@ -23,8 +23,6 @@ export type TabStackParamList = {
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
-  const navigation: any = useNavigation();
-
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({

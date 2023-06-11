@@ -1,20 +1,24 @@
 import { View, Text, Modal } from "react-native";
-import React from "react";
+import React, { FC } from "react";
 
 // Tab Navigator
 import TabNavigator from "./TabNavigator";
 import Home from "../screens/Home";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+import { createStackNavigator } from "@react-navigation/stack";
 import Add from "../screens/Add";
 
-export type RootStackParamList = {
-  Main:undefined;
-  Home:undefined;
-  
-}
+//types
+import { AddProps } from "../screens/types";
 
-const RootStack = createNativeStackNavigator();
-const RootNavigator = () => {
+export type RootStackParamList = {
+  Main: undefined;
+  Home: undefined;
+  Add: AddProps;
+};
+
+const RootStack = createStackNavigator<RootStackParamList>();
+const RootNavigator: FC<RootStackParamList> = () => {
   return (
     <RootStack.Navigator
       screenOptions={{ headerShown: false }}

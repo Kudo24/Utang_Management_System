@@ -6,12 +6,19 @@ import {
   Platform,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
-const Add = () => {
+// react navigation
+import { StackScreenProps } from "@react-navigation/stack";
+import { RootStackParamList } from "../navigator/RootNavigator";
+import { AddProps } from "./types";
+export type Props = StackScreenProps<RootStackParamList, "Add">;
+
+const Add: FC<Props> = ({ route }) => {
+  const navigation: any = useNavigation();
   return (
     <View style={styles.container}>
-      <Text></Text>
       <View>
         <View style={styles.dateContainer}>
           <TextInput placeholder="Month:" style={styles.date} />
