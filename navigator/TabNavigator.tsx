@@ -1,5 +1,5 @@
 import { View, Text, Button, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 
 import { FontAwesome } from "@expo/vector-icons";
 
@@ -14,13 +14,14 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
 
 //types
-import { AddProps } from "../screens/types";
+import { MineProps } from "../screens/types";
 
 export type TabStackParamList = {
-  Mine: AddProps;
+  Mine: MineProps;
+  Others: MineProps;
 };
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<TabStackParamList>();
 
 const TabNavigator = () => {
   return (

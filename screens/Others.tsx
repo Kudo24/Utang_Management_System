@@ -1,9 +1,15 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { FC } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 
 import { useNavigation } from "@react-navigation/native";
-const Others = () => {
+import { RouteProp } from "@react-navigation/native";
+import { TabStackParamList } from "../navigator/TabNavigator";
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+
+type Props = BottomTabScreenProps<TabStackParamList, "Others">;
+
+const Others: FC<Props> = ({ route }) => {
   const navigation: any = useNavigation();
   return (
     <View style={styles.container}>

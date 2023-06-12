@@ -2,19 +2,24 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React, { FC } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 
-import { AddProps } from "./types";
 import { useNavigation } from "@react-navigation/native";
 import { TabStackParamList } from "../navigator/TabNavigator";
 
 // react navigation
 import { StackScreenProps } from "@react-navigation/stack";
 export type Props = StackScreenProps<TabStackParamList, "Mine">;
-const Mine: FC<AddProps> = (route: AddProps) => {
+
+const Mine: FC<Props> = ({ route }) => {
   const navigation: any = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.list}>
-        <Text>Hello world</Text>
+        <Text>{route?.params?.name}</Text>
+        <Text>{route?.params?.amount}</Text>
+        <Text>{route?.params?.month}</Text>
+        <Text>{route?.params?.day}</Text>
+        <Text>{route?.params?.year}</Text>
+        <Text>{route?.params?.description}</Text>
       </View>
       <View style={styles.addList}>
         <TouchableOpacity

@@ -7,14 +7,16 @@ import Home from "../screens/Home";
 
 import { createStackNavigator } from "@react-navigation/stack";
 import Add from "../screens/Add";
+import MineDetails from "../components/Sections/MineDetails";
 
 //types
 import { AddProps } from "../screens/types";
-
+import { MineProps } from "../screens/types";
 export type RootStackParamList = {
   Main: undefined;
   Home: undefined;
   Add: AddProps;
+  MineDetails: MineProps;
 };
 
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -26,6 +28,7 @@ const RootNavigator: FC<RootStackParamList> = () => {
     >
       <RootStack.Screen name="Main" component={TabNavigator} />
       <RootStack.Screen name="Home" component={Home} />
+      <RootStack.Screen name="MineDetails" component={MineDetails} />
 
       <RootStack.Group
         screenOptions={{

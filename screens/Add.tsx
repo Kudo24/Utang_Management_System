@@ -8,38 +8,121 @@ import {
 } from "react-native";
 import React, { FC, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { Formik } from "formik";
 
 // react navigation
 import { StackScreenProps } from "@react-navigation/stack";
+
 import { RootStackParamList } from "../navigator/RootNavigator";
-import { AddProps } from "./types";
+
 export type Props = StackScreenProps<RootStackParamList, "Add">;
+
+type FormValues = {
+  month: string;
+  day: string;
+  year: string;
+  name: string;
+  amount: string;
+  description: string;
+};
+const initialValues: FormValues = {
+  month: "",
+  day: "",
+  year: "",
+  name: "",
+  amount: "",
+  description: "",
+};
 
 const Add: FC<Props> = ({ route }) => {
   const navigation: any = useNavigation();
+
   return (
     <View style={styles.container}>
       <View>
-        <View style={styles.dateContainer}>
-          <TextInput placeholder="Month:" style={styles.date} />
-          <TextInput
-            placeholder="Day:"
-            style={styles.date}
-            keyboardType="numeric"
-          />
-          <TextInput
-            placeholder="Year:"
-            style={styles.date}
-            keyboardType="numeric"
-          />
-        </View>
-        <TextInput placeholder="Name:" style={styles.Input} />
-        <TextInput placeholder="Amount:" style={styles.Input} />
-        <TextInput placeholder="Description:" style={styles.Input} />
+        <Formik
+          initialValues={initialValues}
+          validateOnMount={true}
+          onSubmit={(values) => console.log(values)}
+        >
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            handleReset,
+            values,
+            touched,
+            errors,
+            isValid,
+          }) => (
+            <>
+              <View>
+                <View style={styles.dateContainer}>
+                  <TextInput
+                    placeholder="Month:"
+                    style={styles.date}
+                    value={values.month}
+                    onBlur={handleBlur("month")}
+                    onChangeText={handleChange("month")}
+                  />
+                  <TextInput
+                    placeholder="Day:"
+                    style={styles.date}
+                    keyboardType="numeric"
+                    value={values.day}
+                    onBlur={handleBlur("day")}
+                    onChangeText={handleChange("day")}
+                  />
+                  <TextInput
+                    placeholder="Year:"
+                    style={styles.date}
+                    keyboardType="numeric"
+                    value={values.year}
+                    onBlur={handleBlur("year")}
+                    onChangeText={handleChange("year")}
+                  />
+                </View>
+                <TextInput
+                  placeholder="Name:"
+                  style={styles.Input}
+                  value={values.name}
+                  onBlur={handleBlur("name")}
+                  onChangeText={handleChange("name")}
+                />
+                <TextInput
+                  placeholder="Amount:"
+                  style={styles.Input}
+                  value={values.amount}
+                  onBlur={handleBlur("amount")}
+                  onChangeText={handleChange("amount")}
+                />
+                <TextInput
+                  placeholder="Description:"
+                  style={styles.Input}
+                  value={values.description}
+                  onBlur={handleBlur("description")}
+                  onChangeText={handleChange("description")}
+                />
+              </View>
+              <TouchableOpacity
+                style={styles.proceed}
+                onPress={() =>
+                  navigation.navigate("Mine", {
+                    month: values.month,
+                    day: values.day,
+                    year: values.year,
+                    name: values.name,
+                    amount: values.amount,
+                    description: values.description,
+                  })
+                }
+              >
+                <Text style={styles.proceedText}>Proceed</Text>
+              </TouchableOpacity>
+            </>
+          )}
+        </Formik>
       </View>
-      <TouchableOpacity style={styles.proceed}>
-        <Text style={styles.proceedText}>Proceed</Text>
-      </TouchableOpacity>
     </View>
   );
 };

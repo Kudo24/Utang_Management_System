@@ -3,11 +3,12 @@ export interface AddProps {
 }
 
 export interface MineProps {
-  date?: {
-    month?: string;
-    day?: number;
-    year?: number;
-  };
+  title?: string;
+
+  month?: string;
+  day?: number;
+  year?: number;
+
   name?: string;
   amount?: string;
   description?: string;
