@@ -11,12 +11,12 @@ import MineDetails from "../components/Sections/MineDetails";
 
 //types
 import { AddProps } from "../screens/types";
-import { MineProps } from "../screens/types";
+import { TransactionProps } from "../screens/types";
 export type RootStackParamList = {
   Main: undefined;
   Home: undefined;
   Add: AddProps;
-  MineDetails: MineProps;
+  MineDetails: TransactionProps;
 };
 
 const RootStack = createStackNavigator<RootStackParamList>();

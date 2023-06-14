@@ -3,7 +3,6 @@ import {
   Text,
   StyleSheet,
   TextInput,
-  Platform,
   TouchableOpacity,
 } from "react-native";
 import React, { FC, useState } from "react";
@@ -36,6 +35,7 @@ const initialValues: FormValues = {
 
 const Add: FC<Props> = ({ route }) => {
   const navigation: any = useNavigation();
+  const title = route?.params?.title;
 
   return (
     <View style={styles.container}>
@@ -106,15 +106,26 @@ const Add: FC<Props> = ({ route }) => {
               </View>
               <TouchableOpacity
                 style={styles.proceed}
-                onPress={() =>
-                  navigation.navigate("Mine", {
-                    month: values.month,
-                    day: values.day,
-                    year: values.year,
-                    name: values.name,
-                    amount: values.amount,
-                    description: values.description,
-                  })
+                onPress={
+                  title === "Mine"
+                    ? () =>
+                        navigation.navigate("Mine", {
+                          month: values.month,
+                          day: values.day,
+                          year: values.year,
+                          name: values.name,
+                          amount: values.amount,
+                          description: values.description,
+                        })
+                    : () =>
+                        navigation.navigate("Others", {
+                          month: values.month,
+                          day: values.day,
+                          year: values.year,
+                          name: values.name,
+                          amount: values.amount,
+                          description: values.description,
+                        })
                 }
               >
                 <Text style={styles.proceedText}>Proceed</Text>

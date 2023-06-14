@@ -14,11 +14,11 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
 
 //types
-import { MineProps } from "../screens/types";
+import { TransactionProps } from "../screens/types";
 
 export type TabStackParamList = {
-  Mine: MineProps;
-  Others: MineProps;
+  Mine: TransactionProps;
+  Others: TransactionProps;
 };
 
 const Tab = createBottomTabNavigator<TabStackParamList>();

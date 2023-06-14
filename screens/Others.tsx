@@ -1,20 +1,44 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 
 import { useNavigation } from "@react-navigation/native";
-import { RouteProp } from "@react-navigation/native";
+
 import { TabStackParamList } from "../navigator/TabNavigator";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import { TransactionProps } from "./types";
 
 type Props = BottomTabScreenProps<TabStackParamList, "Others">;
 
 const Others: FC<Props> = ({ route }) => {
   const navigation: any = useNavigation();
+  const [transacts, setTransacts] = useState<TransactionProps[]>([]);
+
+  useEffect(() => {
+    if (route?.params?.name) {
+      const newTransaction = {
+        name: route.params.name,
+        amount: route.params.amount,
+        month: route.params.month,
+        day: route.params.day,
+        year: route.params.year,
+        description: route.params.description,
+      };
+
+      setTransacts((prevTransacts) => [...prevTransacts, newTransaction]);
+    }
+  }, [route?.params]);
   return (
     <View style={styles.container}>
       <View style={styles.list}>
-        <Text>others</Text>
+        {transacts.map((item, index) => (
+          <View key={index}>
+            <Text>{item.amount}</Text>
+            <Text>{item.name}</Text>
+            <Text>{item.day}</Text>
+            <Text>{item.month}</Text>
+          </View>
+        ))}
       </View>
       <View style={styles.addList}>
         <TouchableOpacity
