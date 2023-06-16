@@ -13,6 +13,7 @@ import { Formik } from "formik";
 import { StackScreenProps } from "@react-navigation/stack";
 
 import { RootStackParamList } from "../navigator/RootNavigator";
+import { Divider } from "@rneui/themed";
 
 export type Props = StackScreenProps<RootStackParamList, "Add">;
 
@@ -95,6 +96,7 @@ const Add: FC<Props> = ({ route }) => {
                   value={values.amount}
                   onBlur={handleBlur("amount")}
                   onChangeText={handleChange("amount")}
+                  keyboardType="numeric"
                 />
                 <TextInput
                   placeholder="Description:"
@@ -130,6 +132,7 @@ const Add: FC<Props> = ({ route }) => {
               >
                 <Text style={styles.proceedText}>Proceed</Text>
               </TouchableOpacity>
+              <Divider />
             </>
           )}
         </Formik>

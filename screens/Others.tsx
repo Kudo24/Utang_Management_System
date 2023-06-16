@@ -1,7 +1,13 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import React, { FC, useEffect, useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
-
+import { Divider } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 
 import { TabStackParamList } from "../navigator/TabNavigator";
@@ -30,7 +36,7 @@ const Others: FC<Props> = ({ route }) => {
   }, [route?.params]);
   return (
     <View style={styles.container}>
-      <View style={styles.list}>
+      <ScrollView style={styles.list}>
         {transacts.map((item, index) => (
           <View key={index}>
             <Text>{item.amount}</Text>
@@ -39,7 +45,7 @@ const Others: FC<Props> = ({ route }) => {
             <Text>{item.month}</Text>
           </View>
         ))}
-      </View>
+      </ScrollView>
       <View style={styles.addList}>
         <TouchableOpacity
           style={styles.pencil}
@@ -67,12 +73,14 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
   },
   pencil: {
+    position: "absolute",
     padding: 25,
     backgroundColor: "#6CB4EE",
     alignItems: "center",
     borderRadius: 40, // half of 80
     width: 80,
     marginBottom: 20,
+    bottom: 1,
   },
 });
 export default Others;

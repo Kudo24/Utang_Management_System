@@ -1,4 +1,10 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import React, { FC, useEffect, useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 
@@ -8,6 +14,10 @@ import { TabStackParamList } from "../navigator/TabNavigator";
 // react navigation
 import { StackScreenProps } from "@react-navigation/stack";
 import { TransactionProps } from "./types";
+import { Divider } from "@rneui/themed";
+import BigText from "../components/Text/BigText";
+import RegularText from "../components/Text/RegularText";
+import SmallText from "../components/Text/SmallText";
 
 export type Props = StackScreenProps<TabStackParamList, "Mine">;
 
@@ -18,12 +28,12 @@ const Mine: FC<Props> = ({ route }) => {
   useEffect(() => {
     if (route?.params?.name) {
       const newTransaction = {
-        name: route.params.name,
-        amount: route.params.amount,
-        month: route.params.month,
-        day: route.params.day,
-        year: route.params.year,
-        description: route.params.description,
+        name: route?.params?.name,
+        amount: route?.params?.amount,
+        month: route?.params?.month,
+        day: route?.params?.day,
+        year: route?.params?.year,
+        description: route?.params?.description,
       };
 
       setTransacts((prevTransacts) => [...prevTransacts, newTransaction]);
@@ -32,16 +42,16 @@ const Mine: FC<Props> = ({ route }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.list}>
+      <ScrollView style={styles.list}>
         {transacts.map((item, index) => (
-          <View key={index}>
-            <Text>{item.amount}</Text>
-            <Text>{item.name}</Text>
-            <Text>{item.day}</Text>
-            <Text>{item.month}</Text>
-          </View>
+          <TouchableOpacity key={index}>
+            <View style={styles.RecordButton}>
+              <RegularText>{item.name}</RegularText>
+              <RegularText>{item.amount}</RegularText>
+            </View>
+          </TouchableOpacity>
         ))}
-      </View>
+      </ScrollView>
       <View style={styles.addList}>
         <TouchableOpacity
           style={styles.pencil}
@@ -61,19 +71,28 @@ const styles = StyleSheet.create({
   },
   list: {
     flex: 1,
+    marginTop: 10,
   },
   addList: {
-    flex: 1,
     justifyContent: "flex-end",
     alignItems: "flex-end",
   },
   pencil: {
+    position: "absolute",
     padding: 25,
     backgroundColor: "#6CB4EE",
     alignItems: "center",
     borderRadius: 40, // half of 80
     width: 80,
     marginBottom: 20,
+    bottom: 1,
+  },
+  RecordButton: {
+    backgroundColor: "blue",
+    borderRadius: 25,
+
+    marginVertical: 5,
+    alignItems: "center",
   },
 });
 
