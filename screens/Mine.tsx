@@ -18,12 +18,15 @@ import { Divider } from "@rneui/themed";
 import BigText from "../components/Text/BigText";
 import RegularText from "../components/Text/RegularText";
 import SmallText from "../components/Text/SmallText";
-
+import * as SQLite from "expo-sqlite";
 export type Props = StackScreenProps<TabStackParamList, "Mine">;
 
 const Mine: FC<Props> = ({ route }) => {
   const [transacts, setTransacts] = useState<TransactionProps[]>([]);
   const navigation: any = useNavigation();
+
+  const db = SQLite.openDatabase("example.db");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (route?.params?.name) {
@@ -47,8 +50,9 @@ const Mine: FC<Props> = ({ route }) => {
           <TouchableOpacity key={index}>
             <View style={styles.RecordButton}>
               <RegularText>{item.name}</RegularText>
-              <RegularText>{item.amount}</RegularText>
+              <RegularText>P{item.amount}</RegularText>
             </View>
+            <Divider />
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -88,11 +92,12 @@ const styles = StyleSheet.create({
     bottom: 1,
   },
   RecordButton: {
-    backgroundColor: "blue",
-    borderRadius: 25,
-
+    alignItems: "flex-start",
+    paddingHorizontal: 10,
     marginVertical: 5,
-    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingVertical: 10,
   },
 });
 
